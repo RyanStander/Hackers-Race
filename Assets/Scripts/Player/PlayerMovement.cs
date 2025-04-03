@@ -26,20 +26,21 @@ namespace Player
 
 		private PlayerController playerController;
 
-		public float runDeacceleration = 10f; // Deacceleration that occurs when running on the ground
-		public float airAcceleration = 2.0f; // Air accel
-		public float airDeacceleration = 2.0f; // Deacceleration experienced when opposite strafing
-		public float airControl = 0.3f; // How precise air control is
+		public float RunDeacceleration = 10f; // Deacceleration that occurs when running on the ground
+		public float AirAcceleration = 2.0f; // Air accel
+		public float AirDeacceleration = 2.0f; // Deacceleration experienced when opposite strafing
+		public float AirControl = 0.3f; // How precise air control is
 
 		public float
-			sideStrafeAcceleration =
+			SideStrafeAcceleration =
 				50f; // How fast acceleration occurs to get up to sideStrafeSpeed when side strafing
 
-		public float sideStrafeSpeed = 1f; // What the max speed to generate when side strafing
-		public float jumpSpeed = 8.0f;
-		public float friction = 6f;
+		public float SideStrafeSpeed = 1f; // What the max speed to generate when side strafing
+		[Range(0,4)]public float JumpHeight = 4.0f;
+		private float jumpHeightMultiplier = 250f;
+		public float Friction = 6f;
 		private float playerTopVelocity = 0;
-		public float playerFriction = 0f;
+		public float PlayerFriction = 0f;
 		float addspeed;
 		float accelspeed;
 		float currentspeed;
@@ -53,22 +54,22 @@ namespace Player
 		float drop;
 
 		public bool JumpQueue = false;
-		public bool wishJump = false;
+		public bool WishJump = false;
 
-		public Vector3 moveDirection;
-		public Vector3 moveDirectionNorm;
+		public Vector3 MoveDirection;
+		public Vector3 MoveDirectionNorm;
 		private Vector3 playerVelocity;
 		Vector3 wishdir;
 		Vector3 vec;
 
-		public Transform playerView;
+		public Transform PlayerView;
 
-		public float x;
-		public float z;
+		public float X;
+		public float Z;
 
 		public bool IsGrounded;
 
-		public Transform player;
+		public Transform Player;
 		Vector3 udp;
 
 		private void OnValidate()
@@ -81,7 +82,13 @@ namespace Player
 		{
 			playerController = playerManager.PlayerController;
 		}
-		
+
+		private void FixedUpdate()
+		{
+			// Move the controller
+			playerManager.Rigidbody.AddForce(playerVelocity);
+		}
+
 		public void HandleMovement()
 		{
 			IsGrounded = Physics.CheckSphere(transform.position, groundCheckDistance, groundMask);
@@ -94,8 +101,7 @@ namespace Player
 			else
 				AirMove();
 
-			// Move the controller
-			playerManager.Rigidbody.AddForce(playerVelocity);
+			
 			
 
 			// Calculate top velocity
@@ -107,8 +113,8 @@ namespace Player
 
 		private void SetMovementDir()
 		{
-			x = playerController.Forward;
-			z = playerController.Left;
+			X = playerController.Forward;
+			Z = playerController.Left;
 		}
 
 		//Queues the next jump
@@ -116,7 +122,7 @@ namespace Player
 		{
 			if (playerController.JumpInput && IsGrounded)
 			{
-				wishJump = true;
+				WishJump = true;
 				Debug.Log("Jumping");
 			}
 
@@ -127,7 +133,7 @@ namespace Player
 
 			if (IsGrounded && JumpQueue)
 			{
-				wishJump = true;
+				WishJump = true;
 				JumpQueue = false;
 			}
 		}
@@ -152,7 +158,7 @@ namespace Player
 		{
 			SetMovementDir();
 
-			wishdir = new Vector3(playerController.Forward, 0, playerController.Left);
+			wishdir = new Vector3(playerController.Left, 0, playerController.Forward);
 			wishdir = transform.TransformDirection(wishdir);
 
 			wishSpeed = wishdir.magnitude;
@@ -160,21 +166,21 @@ namespace Player
 			wishSpeed *= 7f;
 
 			wishdir.Normalize();
-			moveDirectionNorm = wishdir;
+			MoveDirectionNorm = wishdir;
 
 			// Aircontrol
 			wishSpeed2 = wishSpeed;
 			if (Vector3.Dot(playerVelocity, wishdir) < 0)
-				accel = airDeacceleration;
+				accel = AirDeacceleration;
 			else
-				accel = airAcceleration;
+				accel = AirAcceleration;
 
 			// If the player is ONLY strafing left or right
 			if (playerController.Forward == 0 && playerController.Left != 0)
 			{
-				if (wishSpeed > sideStrafeSpeed)
-					wishSpeed = sideStrafeSpeed;
-				accel = sideStrafeAcceleration;
+				if (wishSpeed > SideStrafeSpeed)
+					wishSpeed = SideStrafeSpeed;
+				accel = SideStrafeAcceleration;
 			}
 
 			Accelerate(wishdir, wishSpeed, accel);
@@ -203,7 +209,7 @@ namespace Player
 
 				dot = Vector3.Dot(playerVelocity, wishdir);
 				k = 32;
-				k *= airControl * dot * dot * Time.deltaTime;
+				k *= this.AirControl * dot * dot * Time.deltaTime;
 
 				// Change direction while slowing down
 				if (dot > 0)
@@ -213,7 +219,7 @@ namespace Player
 					playerVelocity.z = playerVelocity.z * speed + wishdir.z * k;
 
 					playerVelocity.Normalize();
-					moveDirectionNorm = playerVelocity;
+					MoveDirectionNorm = playerVelocity;
 				}
 
 				playerVelocity.x *= speed;
@@ -229,17 +235,17 @@ namespace Player
 		public void GroundMove()
 		{
 			// Do not apply friction if the player is queueing up the next jump
-			if (!wishJump)
+			if (!WishJump)
 				ApplyFriction(1.0f);
 			else
 				ApplyFriction(0);
 
 			SetMovementDir();
 
-			wishdir = new Vector3(playerController.Forward, 0, playerController.Left);
+			wishdir = new Vector3(playerController.Left, 0, playerController.Forward);
 			wishdir = transform.TransformDirection(wishdir);
 			wishdir.Normalize();
-			moveDirectionNorm = wishdir;
+			MoveDirectionNorm = wishdir;
 
 			wishSpeed = wishdir.magnitude;
 			wishSpeed *= moveSpeed;
@@ -249,10 +255,10 @@ namespace Player
 			// Reset the gravity velocity
 			playerVelocity.y = 0;
 
-			if (wishJump)
+			if (WishJump)
 			{
-				playerVelocity.y = jumpSpeed;
-				wishJump = false;
+				playerVelocity.y = JumpHeight * jumpHeightMultiplier;
+				WishJump = false;
 			}
 
 			/**
@@ -268,12 +274,12 @@ namespace Player
 				/* Only if the player is on the ground then apply friction */
 				if (IsGrounded)
 				{
-					control = speed < runDeacceleration ? runDeacceleration : speed;
-					drop = control * friction * Time.deltaTime * t;
+					control = speed < RunDeacceleration ? RunDeacceleration : speed;
+					drop = control * Friction * Time.deltaTime * t;
 				}
 
 				newspeed = speed - drop;
-				playerFriction = newspeed;
+				PlayerFriction = newspeed;
 				if (newspeed < 0)
 					newspeed = 0;
 				if (speed > 0)

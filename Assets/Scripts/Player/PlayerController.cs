@@ -65,8 +65,10 @@ namespace Player
             inputActions.Player.Sprint.canceled += i => SprintInput = false;
             //Dodge
             inputActions.Player.Dash.performed += i => DashInput = true;
+            inputActions.Player.Dash.canceled += i => DashInput = false;
             //Jump
             inputActions.Player.Jump.performed += i => JumpInput = true;
+            inputActions.Player.Jump.canceled += i => JumpInput = false;
         }
 
         #region Movement
