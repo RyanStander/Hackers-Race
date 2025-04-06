@@ -101,9 +101,6 @@ namespace Player
 			else
 				AirMove();
 
-			
-			
-
 			// Calculate top velocity
 			udp = playerVelocity;
 			udp.y = 0;
