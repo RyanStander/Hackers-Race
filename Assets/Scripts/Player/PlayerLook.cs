@@ -22,13 +22,13 @@ namespace Player
         private void Start()
         {
             playerController = playerManager.PlayerController;
+            
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         private void Update()
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            
             playerManager.transform.rotation = Quaternion.Euler(0, mainCamera.transform.rotation.eulerAngles.y, 0);
         }
     }
