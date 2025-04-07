@@ -32,6 +32,11 @@ namespace Player
 		private Vector3 playerMovement;
 
 		public bool IsGrounded;
+		
+		public delegate void CanBreakBlockades();
+		public static CanBreakBlockades HighSpeedAchieved;
+		public static CanBreakBlockades ReturnedToLowSpeed;
+		private bool isInHighSpeed;
 
 		private void OnValidate()
 		{
@@ -54,6 +59,18 @@ namespace Player
 				playerRigidbody.AddForce(Vector3.up * (JumpHeight * jumpHeightMultiplier), ForceMode.Impulse);
 				WishJump = false;
 			}
+
+			if (playerRigidbody.velocity.magnitude > 30 && !isInHighSpeed)
+			{
+				HighSpeedAchieved?.Invoke();
+				isInHighSpeed = true;
+			}
+			else if (playerRigidbody.velocity.magnitude < 30 && isInHighSpeed)
+			{
+				ReturnedToLowSpeed?.Invoke();
+				isInHighSpeed = false;
+			}
+
 		}
 
 		public void HandleMovement()
