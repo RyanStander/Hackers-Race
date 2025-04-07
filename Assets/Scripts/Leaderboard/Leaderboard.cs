@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -18,25 +19,55 @@ namespace Leaderboard
 
         public void OpenLeaderboard(float score)
         {
-            gameObject.SetActive(true);
-        
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-        
-            playerScore = score;
-            currentScoreText.text = "You finished in: " + playerScore.ToString();
+            
+            gameObject.SetActive(true);
             submitButton.SetActive(true);
             playerNameInput.gameObject.SetActive(true);
         
+            playerScore = score;
+            TimeSpan completionTime = TimeSpanConverter.ConvertToTimeSpan(playerScore);
+            currentScoreText.text = "You finished in: " + $"{completionTime.Minutes:D2}:{completionTime.Seconds:D2}:{completionTime.Milliseconds / 10:D2}";
+            
             LoadLeaderboard();
         }
-
-        private void Start()
-        {
-            LoadLeaderboard();
         
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+        private void LoadLeaderboard()
+        {
+            collectedScores.Clear();
+            
+            string loadedScores = PlayerPrefs.GetString("LeaderBoards", "");
+        
+            string[] splitScores = loadedScores.Split(',');
+
+            for (int i = 0; i < splitScores.Length -2; i+=2)
+            {
+                PlayerInfo loadedInfo = new PlayerInfo(splitScores[i], float.Parse(splitScores[i + 1]));
+            
+                collectedScores.Add(loadedInfo);
+            }
+        
+            UpdateLeaderBoardVisual();
+        }
+        
+        private void UpdateLeaderBoardVisual()
+        {
+            for (int i = 0; i < names.Count; i++)
+            {
+                if (i < collectedScores.Count)
+                {
+                    names[i].text = collectedScores[i].PlayerName;
+                    TimeSpan completionTime = TimeSpanConverter.ConvertToTimeSpan(collectedScores[i].PlayerScore);
+                    scores[i].text =
+                        $"{completionTime.Minutes:D2}:{completionTime.Seconds:D2}:{completionTime.Milliseconds / 10:D2}";
+                }
+                else
+                {
+                    names[i].text = "";
+                    scores[i].text = "";
+                }
+            }
         }
 
         public void SubmitButton()
@@ -55,7 +86,7 @@ namespace Leaderboard
         {
             for (int i = collectedScores.Count - 1; i > 0; i--)
             {
-                if (collectedScores[i].PlayerScore > collectedScores[i - 1].PlayerScore)
+                if (collectedScores[i].PlayerScore < collectedScores[i - 1].PlayerScore)
                 {
                     (collectedScores[i - 1], collectedScores[i]) = (collectedScores[i], collectedScores[i - 1]);
                 }
@@ -76,39 +107,6 @@ namespace Leaderboard
 
             PlayerPrefs.SetString("LeaderBoards", stats);
 
-            UpdateLeaderBoardVisual();
-        }
-
-        private void UpdateLeaderBoardVisual()
-        {
-            for (int i = 0; i < names.Count; i++)
-            {
-                if (i < collectedScores.Count)
-                {
-                    names[i].text = collectedScores[i].PlayerName;
-                    scores[i].text = collectedScores[i].PlayerScore.ToString();
-                }
-                else
-                {
-                    names[i].text = "";
-                    scores[i].text = "";
-                }
-            }
-        }
-
-        private void LoadLeaderboard()
-        {
-            string scores = PlayerPrefs.GetString("LeaderBoards", "");
-        
-            string[] scores2 = scores.Split(',');
-
-            for (int i = 0; i < scores2.Length -2; i+=2)
-            {
-                PlayerInfo loadedInfo = new PlayerInfo(scores2[i], float.Parse(scores2[i + 1]));
-            
-                collectedScores.Add(loadedInfo);
-            }
-        
             UpdateLeaderBoardVisual();
         }
 

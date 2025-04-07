@@ -8,6 +8,8 @@ using UnityEngine;
     {
         [SerializeField] private PlayerManager player;
         [SerializeField] private TimeTracker timeTracker;
+        [SerializeField] private Leaderboard.Leaderboard leaderboard;
+        [SerializeField] private CinemachineInputProvider inputProvider;
 
         private Vector3 spawnPoint;
         private void OnValidate()
@@ -17,6 +19,12 @@ using UnityEngine;
             
             if (timeTracker == null)
                 timeTracker = FindObjectOfType<TimeTracker>();
+            
+            if (leaderboard == null)
+                leaderboard = FindObjectOfType<Leaderboard.Leaderboard>();
+            
+            if (inputProvider == null)
+                inputProvider = FindObjectOfType<CinemachineInputProvider>();
         }
 
         private void Start()
@@ -30,11 +38,23 @@ using UnityEngine;
             player.transform.rotation = Quaternion.identity;
             player.Rigidbody.velocity = Vector3.zero;
             player.Rigidbody.angularVelocity = Vector3.zero;
-            player.PlayerController.ResetInputs();
+            player.PlayerController.ResetAllInputs();
             player.PlayerDash.ResetDashes();
 
             player.PlayerLook.fpsCamera.ForceCameraPosition(player.transform.position, player.transform.rotation);
             
             timeTracker.StartCounting();
+        }
+        
+        public void PlayerWin()
+        {
+            timeTracker.gameObject.SetActive(false);
+            
+            player.PlayerController.ResetAllInputs();
+            player.PlayerController.ToggleInputs(false);
+            
+            inputProvider.enabled = false;
+            
+            leaderboard.OpenLeaderboard(TimeSpanConverter.ConvertToFloat(timeTracker.GetTotalTime()));
         }
     }

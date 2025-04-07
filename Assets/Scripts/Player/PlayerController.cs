@@ -8,8 +8,7 @@ namespace Player
     {
         private PlayerControllerInput inputActions;
 
-        public float Left, Forward, MoveAmount;
-        public Vector2 LookInput;
+        public float Left, Forward;
         private Vector2 movementInput;
         public bool SprintInput, JumpInput, DashInput;
 
@@ -19,9 +18,9 @@ namespace Player
             {
                 //if no input actions set, create one
                 inputActions = new PlayerControllerInput();
-                
+
                 inputActions.Player.Enable();
-                
+
                 //check for inputs with input actions
                 CheckInputs();
             }
@@ -39,20 +38,8 @@ namespace Player
             DashInput = false;
         }
 
-        internal void ResetMovementValues()
-        {
-            Forward = 0;
-            Left = 0;
-            MoveAmount = 0;
-            movementInput = Vector2.zero;
-            LookInput = Vector2.zero;
-        }
-
         private void CheckInputs()
         {
-            //Look
-            inputActions.Player.Look.performed +=
-                lookInputActions => LookInput = lookInputActions.ReadValue<Vector2>();
             //Movement
             inputActions.Player.Move.performed += movementInputActions =>
                 movementInput = movementInputActions.ReadValue<Vector2>();
@@ -67,16 +54,32 @@ namespace Player
             inputActions.Player.Jump.canceled += i => JumpInput = false;
         }
 
+        public void ToggleInputs(bool enable)
+        {
+            if (enable)
+                inputActions.Player.Enable();
+            else
+                inputActions.Player.Disable();
+        }
+        
+        public void ResetAllInputs()
+        {
+            movementInput = Vector2.zero;
+            SprintInput = false;
+            JumpInput = false;
+            DashInput = false;
+            Left = 0;
+            Forward = 0;
+        }
+
         #region Movement
 
         private void HandleMovementInput()
         {
             Left = movementInput.x;
             Forward = movementInput.y;
-            MoveAmount = Mathf.Clamp01(Mathf.Abs(Left) + Mathf.Abs(Forward));
         }
 
         #endregion
     }
-    
 }
