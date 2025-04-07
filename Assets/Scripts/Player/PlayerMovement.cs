@@ -18,6 +18,7 @@ namespace Player
 		[SerializeField, Range(0,1)] private float icyness = 0.5f;
 		
 		private PlayerController playerController;
+		private Rigidbody playerRigidbody;
 		
 		private float desiredSpeed;
 		
@@ -41,15 +42,16 @@ namespace Player
 		private void Start()
 		{
 			playerController = playerManager.PlayerController;
+			playerRigidbody = playerManager.Rigidbody;
 		}
 
 		private void FixedUpdate()
 		{
-			playerManager.Rigidbody.AddForce(-playerManager.Rigidbody.velocity*icyness + playerMovement);
+			playerRigidbody.AddForce(-playerRigidbody.velocity*icyness + playerMovement);
 			
 			if (WishJump)
 			{
-				playerManager.Rigidbody.AddForce(Vector3.up * (JumpHeight * jumpHeightMultiplier), ForceMode.Impulse);
+				playerRigidbody.AddForce(Vector3.up * (JumpHeight * jumpHeightMultiplier), ForceMode.Impulse);
 				WishJump = false;
 			}
 		}

@@ -41,6 +41,11 @@ namespace Player
                 fpsCamera.m_Lens.FieldOfView = Mathf.Lerp(fpsCamera.m_Lens.FieldOfView, 90, Time.deltaTime * 5);
             else
                 fpsCamera.m_Lens.FieldOfView = Mathf.Lerp(fpsCamera.m_Lens.FieldOfView, originalFov, Time.deltaTime * 5);
+            
+            if(playerController.DashInput)
+                fpsCamera.m_Lens.FieldOfView = Mathf.Lerp(fpsCamera.m_Lens.FieldOfView, 120, Time.deltaTime * 10);
+            else
+                fpsCamera.m_Lens.FieldOfView = Mathf.Lerp(fpsCamera.m_Lens.FieldOfView, originalFov, Time.deltaTime * 10);
         }
     }
 }
