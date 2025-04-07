@@ -103,5 +103,12 @@ namespace Player
                     Vector3.forward
             };
         }
+
+        public void ResetDashes()
+        {
+            dashCount = 3;
+            cooldownActive = false;
+            timeStamp = 0;
+        }
     }
 }

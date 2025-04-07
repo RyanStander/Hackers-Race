@@ -8,7 +8,7 @@ namespace Player
     {
         [SerializeField] private PlayerManager playerManager;
         [SerializeField] private Camera mainCamera;
-        [SerializeField] private CinemachineVirtualCamera fpsCamera;
+        public CinemachineVirtualCamera fpsCamera;
         private PlayerController playerController;
         private float originalFov;
 

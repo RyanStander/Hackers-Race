@@ -8,8 +8,8 @@ namespace Leaderboard
     {
         [SerializeField] private TextMeshProUGUI timeText;
         
-        private static DateTime timeStarted;
-        private static TimeSpan totalTime;
+        private DateTime timeStarted;
+        private TimeSpan totalTime;
 
         private void OnValidate()
         {
@@ -17,7 +17,7 @@ namespace Leaderboard
                 timeText = GetComponent<TextMeshProUGUI>();
         }
 
-        public static void StartCounting()
+        public void StartCounting()
         {
             timeStarted = DateTime.Now;
         }
