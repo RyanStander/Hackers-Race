@@ -12,7 +12,6 @@ namespace Player
         public Vector2 LookInput;
         private Vector2 movementInput;
         public bool SprintInput, JumpInput, DashInput;
-        public bool SprintFlag;
 
         private void Awake()
         {
@@ -32,14 +31,11 @@ namespace Player
         {
             //Movement inputs  
             HandleMovementInput();
-            HandleSprintInput();
         }
 
         //Reset the input bools so that they do not queue up for animations
         internal void ResetInputs()
         {
-            JumpInput = false;
-            SprintInput = false;
             DashInput = false;
         }
 
@@ -78,22 +74,6 @@ namespace Player
             Left = movementInput.x;
             Forward = movementInput.y;
             MoveAmount = Mathf.Clamp01(Mathf.Abs(Left) + Mathf.Abs(Forward));
-        }
-
-        private void HandleSprintInput()
-        {
-            if (SprintInput)
-            {
-                //If character is currently moving forward
-                if (MoveAmount > 0.5f)
-                {
-                    SprintFlag = true;
-                }
-            }
-            else
-            {
-                SprintFlag = false;
-            }
         }
 
         #endregion

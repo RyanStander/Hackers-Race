@@ -27,10 +27,15 @@ namespace Leaderboard
             StartCounting();
         }
 
-        public void Update()
+        private void Update()
         {
             totalTime = DateTime.Now - timeStarted;
             timeText.text = $"{totalTime.Minutes:D2}:{totalTime.Seconds:D2}:{totalTime.Milliseconds / 10:D2}";
+        }
+        
+        public TimeSpan GetTotalTime()
+        {
+            return totalTime;
         }
     }
 }
