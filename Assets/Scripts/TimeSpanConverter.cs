@@ -14,7 +14,6 @@
 
         public static float ConvertToFloat(TimeSpan timeSpan)
         {
-            float floatTimeSpan;
             int minutes, seconds, milliseconds;
             seconds = timeSpan.Seconds;
             minutes = timeSpan.Minutes;

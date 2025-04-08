@@ -54,7 +54,12 @@ namespace Player
 
         private void FixedUpdate()
         {
-            playerRigidbody.AddForce(-playerRigidbody.velocity * icyness + playerMovement);
+            if (playerMovement.x != 0 && playerMovement.z != 0)
+            {
+                Vector3 velocityWithoutGravity = playerRigidbody.velocity;
+                velocityWithoutGravity.y = 0;
+                playerRigidbody.AddForce(-velocityWithoutGravity * icyness + playerMovement);
+            }
 
             if (WishJump)
             {

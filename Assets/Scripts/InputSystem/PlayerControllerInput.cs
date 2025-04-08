@@ -253,7 +253,7 @@ public partial class @PlayerControllerInput: IInputActionCollection2, IDisposabl
                 {
                     ""name"": """",
                     ""id"": ""fbfd7a3c-b0fe-4b4e-baf3-2913adf3fa3a"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",

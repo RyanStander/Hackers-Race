@@ -6,13 +6,13 @@ namespace Environment
 {
     public class HighSpeedBlockade : MonoBehaviour
     {
-        [SerializeField] private Collider collider;
+        [SerializeField] private Collider blockadeCollider;
         [SerializeField] private MeshRenderer meshRenderer;
 
         private void OnValidate()
         {
-            if (collider == null)
-                collider = GetComponent<Collider>();
+            if (blockadeCollider == null)
+                blockadeCollider = GetComponent<Collider>();
 
             if (meshRenderer == null)
                 meshRenderer = GetComponent<MeshRenderer>();
@@ -32,13 +32,13 @@ namespace Environment
 
         private void BecomeVulnerable()
         {
-            collider.isTrigger = true;
+            blockadeCollider.isTrigger = true;
             meshRenderer.enabled = false;
         }
 
         private void BecomeImpenetrable()
         {
-            collider.isTrigger = false;
+            blockadeCollider.isTrigger = false;
             meshRenderer.enabled = true;
         }
     }
