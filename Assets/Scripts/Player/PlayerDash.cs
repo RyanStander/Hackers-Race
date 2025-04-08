@@ -115,5 +115,10 @@ namespace Player
         {
             return dashCount > 0;
         }
+
+        public int GetDashCount()
+        {
+            return dashCount;
+        }
     }
 }
