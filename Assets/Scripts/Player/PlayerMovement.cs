@@ -129,6 +129,7 @@ namespace Player
                 hit.transform.CompareTag("MovingPlatform") && hit.transform.GetComponent<MovingObject>())
             {
                 transform.SetParent(hit.transform, true);
+                Debug.Log("Parenting");
             }
             else
             {
