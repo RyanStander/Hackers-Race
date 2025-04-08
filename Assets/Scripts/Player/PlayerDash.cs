@@ -110,5 +110,10 @@ namespace Player
             cooldownActive = false;
             timeStamp = 0;
         }
+        
+        public bool CanDash()
+        {
+            return dashCount > 0;
+        }
     }
 }
