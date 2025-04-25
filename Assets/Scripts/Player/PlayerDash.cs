@@ -16,20 +16,32 @@ namespace Player
 
         private PlayerController playerController;
         private Rigidbody playerRigidbody;
+        private bool wishingToDash;
 
         private void OnValidate()
         {
             if (playerManager == null)
                 playerManager = GetComponent<PlayerManager>();
-
-            if (playerRigidbody == null)
-                playerRigidbody = playerManager.Rigidbody;
         }
 
         private void Start()
         {
             playerController = playerManager.PlayerController;
             dashCount = totalDashes;
+            playerRigidbody = playerManager.Rigidbody;
+        }
+
+        private void FixedUpdate()
+        {
+            if(wishingToDash)
+            {
+                Vector3 dashDirection =
+                    transform.TransformDirection(GetDashDirection(playerController.Forward, playerController.Left));
+
+                playerRigidbody.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
+
+                wishingToDash = false;
+            }
         }
 
         public void HandleDash()
@@ -37,7 +49,7 @@ namespace Player
             if(cooldownActive)
                 HandleCooldown();
             
-            if (!playerController.DashInput || dashCount <= 0)
+            if (!playerController.DashInput || dashCount <= 0 ||wishingToDash)
                 return;
 
             dashCount--;
@@ -47,9 +59,7 @@ namespace Player
 
             cooldownActive = true;
             
-            Vector3 dashDirection = transform.TransformDirection(GetDashDirection(playerController.Forward, playerController.Left));
-            
-            playerRigidbody.AddForce(dashDirection * dashSpeed, ForceMode.VelocityChange);
+            wishingToDash = true;
         }
 
         private void HandleCooldown()
