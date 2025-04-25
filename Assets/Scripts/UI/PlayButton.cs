@@ -8,6 +8,7 @@ namespace UI
     {
         [SerializeField] private Image fadeImage;
         private bool isFading;
+        [SerializeField]private string sceneToLoad = "Tutorial";
         
         //When the button is clicked, fade the image in and load scene
         private IEnumerator StartGame()
@@ -19,7 +20,7 @@ namespace UI
                 fadeImage.color = color;
                 yield return null;
             }
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
         }
         
         public void PlayGame()

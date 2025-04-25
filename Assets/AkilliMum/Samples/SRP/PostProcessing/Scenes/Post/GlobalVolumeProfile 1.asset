@@ -94,13 +94,13 @@ MonoBehaviour:
   active: 1
   Active:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   When:
     m_OverrideState: 1
     m_Value: 500
   Lines:
     m_OverrideState: 1
-    m_Value: 9.67
+    m_Value: 5.55
   ColorLight:
     m_OverrideState: 1
     m_Value: {r: 0, g: 1, b: 0.15510082, a: 1}
@@ -396,7 +396,7 @@ MonoBehaviour:
   active: 1
   Active:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   When:
     m_OverrideState: 1
     m_Value: 500

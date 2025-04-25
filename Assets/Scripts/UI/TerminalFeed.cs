@@ -46,7 +46,7 @@ namespace UI
                     sb.AppendLine(line);
                 }
 
-                sb.AppendLine("■"); // Terminal prompt symbol
+                sb.AppendLine("|"); // Terminal prompt symbol
 
                 // Update UI
                 if (TerminalText != null)
