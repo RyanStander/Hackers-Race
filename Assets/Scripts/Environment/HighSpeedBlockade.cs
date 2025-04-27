@@ -8,6 +8,8 @@ namespace Environment
     {
         [SerializeField] private Collider blockadeCollider;
         [SerializeField] private MeshRenderer meshRenderer;
+        [SerializeField] private Material normalMaterial;
+        [SerializeField] private Material vulnerableMaterial;
 
         private void OnValidate()
         {
@@ -33,13 +35,13 @@ namespace Environment
         private void BecomeVulnerable()
         {
             blockadeCollider.isTrigger = true;
-            meshRenderer.enabled = false;
+            meshRenderer.material = vulnerableMaterial;
         }
 
         private void BecomeImpenetrable()
         {
             blockadeCollider.isTrigger = false;
-            meshRenderer.enabled = true;
+            meshRenderer.material = normalMaterial;
         }
     }
 }
