@@ -894,6 +894,7 @@ RectTransform:
   - {fileID: 533673569618025000}
   - {fileID: 8369999799093732504}
   - {fileID: 5912638601819065646}
+  - {fileID: 793939063690374721}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3439,7 +3440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -46.83515}
+  m_AnchoredPosition: {x: 0, y: -54.835}
   m_SizeDelta: {x: 546.61, y: 93.6703}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &188739913115826955
@@ -4274,6 +4275,77 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &5279357121752741552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 793939063690374721}
+  - component: {fileID: 5901295153253782934}
+  - component: {fileID: 2123794676402774025}
+  m_Layer: 5
+  m_Name: RadarUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &793939063690374721
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279357121752741552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8759532073536513596}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 749.465, y: 749.465}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5901295153253782934
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279357121752741552}
+  m_CullTransparentMesh: 1
+--- !u!114 &2123794676402774025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279357121752741552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a72949498284d43b4351af7f763c184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  radarUI: {fileID: 793939063690374721}
+  blipPrefab: {fileID: 3300410027342002089, guid: 72bd0001ce4c07f43849669dac56899d,
+    type: 3}
+  detectionRadius: 20
+  sentryMask:
+    serializedVersion: 2
+    m_Bits: 128
+  radarRadius: 300
+  minBlipSize: 20
+  maxBlipSize: 60
+  farColor: {r: 0, g: 1, b: 0, a: 1}
+  nearColor: {r: 1, g: 0, b: 0, a: 1}
+  minDangerDistance: 5
 --- !u!1 &5853677360676218355
 GameObject:
   m_ObjectHideFlags: 0
@@ -5698,8 +5770,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -314, y: -33}
-  m_SizeDelta: {x: 588.249, y: 32.664}
+  m_AnchoredPosition: {x: -306.3, y: -25.314026}
+  m_SizeDelta: {x: 588.249, y: 34.6277}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6376795718065443927
 CanvasRenderer:

@@ -10,6 +10,8 @@ namespace Environment
     {
         [SerializeField] private PlayerManager player;
         [SerializeField] private Volume sentryVolume;
+        private VolumeProfile clonedProfile;
+        private VCRVolume clonedVCRVolume;
         //from this point to 0 is the effect strength modified
         [SerializeField] private float maxDistance = 5f;
         private float stripeMaxValue = 7f;
@@ -24,6 +26,23 @@ namespace Environment
 
             if (sentryVolume == null)
                 sentryVolume = GetComponent<Volume>();
+        }
+
+        private void Start()
+        {
+            //create a clone of the sentry volume
+            //clone the profile and any components you want to change
+            //I only need to change the vignette so I only clone that
+            clonedProfile = Instantiate(sentryVolume.profile);
+            clonedProfile.TryGet(out clonedVCRVolume);
+            clonedVCRVolume = Instantiate(clonedVCRVolume);
+
+            //assign the component to the cloned profile
+            //seems like there should be a better way, but this works
+            //you might need to experiment with the index value for other effects
+            clonedProfile.components[0] = clonedVCRVolume;
+            //assign the profile to the volume
+            sentryVolume.profile = clonedProfile;
         }
 
         private void FixedUpdate()
