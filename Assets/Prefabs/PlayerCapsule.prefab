@@ -259,6 +259,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   icyness: 0.25
+  securityBreachSpeed: 30
   JumpHeight: 2
   JumpQueue: 0
   WishJump: 0

@@ -25,16 +25,16 @@ MonoBehaviour:
     dimension: 1
   Stripes:
     m_OverrideState: 1
-    m_Value: 7.1
+    m_Value: 1.4505726
   Noisy:
     m_OverrideState: 1
-    m_Value: 0.98
+    m_Value: 0.103612326
   VerticalShift:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.20722465
   HorizontalShift:
     m_OverrideState: 1
-    m_Value: 1.78
+    m_Value: 0.20722465
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

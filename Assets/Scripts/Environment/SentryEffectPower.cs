@@ -15,7 +15,7 @@ namespace Environment
         //from this point to 0 is the effect strength modified
         [SerializeField] private float maxDistance = 5f;
         private float stripeMaxValue = 7f;
-        private float noisyMaxValue = 1f;
+        private float noisyMaxValue = 0.5f;
         private float verticalShiftMaxValue = 1f;
         private float horizontalShiftMaxValue = 1f;
         
@@ -52,7 +52,8 @@ namespace Environment
             
             float distance = Vector3.Distance(player.transform.position, transform.position);
             float effectStrength = Mathf.Clamp01(1 - (distance / maxDistance));
-                
+            
+            sentryVolume.priority = effectStrength;
             vcrVolume.Stripes.value = effectStrength * stripeMaxValue;
             vcrVolume.Noisy.value = effectStrength * noisyMaxValue;
             vcrVolume.VerticalShift.value = effectStrength * verticalShiftMaxValue;
