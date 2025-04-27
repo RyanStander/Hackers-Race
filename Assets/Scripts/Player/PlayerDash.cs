@@ -121,14 +121,14 @@ namespace Player
             timeStamp = 0;
         }
         
-        public bool CanDash()
-        {
-            return dashCount > 0;
-        }
+        public bool CanDash() => dashCount > 0;
 
-        public int GetDashCount()
-        {
-            return dashCount;
-        }
+        public int GetDashCount() => dashCount;
+
+        public float GetDashRemainingCooldown() => timeStamp - Time.time;
+
+        public float GetDashCooldownDuration() => dashCooldown;
+        
+        public bool IsCooldownActive() => cooldownActive;
     }
 }

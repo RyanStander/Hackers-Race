@@ -30,7 +30,7 @@ namespace Leaderboard
         private void Update()
         {
             totalTime = DateTime.Now - timeStarted;
-            timeText.text = $"{totalTime.Minutes:D2}:{totalTime.Seconds:D2}:{totalTime.Milliseconds / 10:D2}";
+            timeText.text = $"$trace_time {totalTime.Minutes:D2}:{totalTime.Seconds:D2}.{totalTime.Milliseconds / 10:D2}";
         }
         
         public TimeSpan GetTotalTime()

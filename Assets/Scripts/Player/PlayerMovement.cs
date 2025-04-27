@@ -17,6 +17,7 @@ namespace Player
         [SerializeField] private float groundCheckDistance = 0.4f;
         [SerializeField] private LayerMask groundMask;
         [SerializeField, Range(0, 1)] private float icyness = 0.5f;
+        [SerializeField] private float securityBreachSpeed = 30;
 
         private PlayerController playerController;
         private Rigidbody playerRigidbody;
@@ -67,12 +68,12 @@ namespace Player
                 WishJump = false;
             }
 
-            if (playerRigidbody.velocity.magnitude > 30 && !isInHighSpeed)
+            if (playerRigidbody.velocity.magnitude > securityBreachSpeed && !isInHighSpeed)
             {
                 HighSpeedAchieved?.Invoke();
                 isInHighSpeed = true;
             }
-            else if (playerRigidbody.velocity.magnitude < 30 && isInHighSpeed)
+            else if (playerRigidbody.velocity.magnitude < securityBreachSpeed && isInHighSpeed)
             {
                 ReturnedToLowSpeed?.Invoke();
                 isInHighSpeed = false;
@@ -107,11 +108,13 @@ namespace Player
         {
             if (playerController.JumpInput && IsGrounded)
             {
+                playerController.JumpInput = false;
                 WishJump = true;
             }
 
             if (!IsGrounded && playerController.JumpInput)
             {
+                playerController.JumpInput = false;
                 JumpQueue = true;
             }
 
@@ -139,5 +142,7 @@ namespace Player
                 }
             }
         }
+        
+        public float GetSecurityBreachSpeed() => securityBreachSpeed;
     }
 }

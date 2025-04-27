@@ -18,23 +18,23 @@ MonoBehaviour:
     m_Value: 1
   When:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1000
   Noise:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: fe501083ed04d7148a38ba0776f57bbb, type: 3}
     dimension: 1
   Stripes:
     m_OverrideState: 1
-    m_Value: 2.1
+    m_Value: 7.1
   Noisy:
     m_OverrideState: 1
-    m_Value: 0.13
+    m_Value: 0.98
   VerticalShift:
     m_OverrideState: 1
-    m_Value: 14.1
+    m_Value: 0
   HorizontalShift:
     m_OverrideState: 1
-    m_Value: 4.35
+    m_Value: 1.78
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
