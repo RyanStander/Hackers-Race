@@ -36,7 +36,7 @@ namespace Player
             if(wishingToDash)
             {
                 Vector3 dashDirection =
-                    transform.TransformDirection(GetDashDirection(playerController.Forward, playerController.Left));
+                    Camera.main.transform.TransformDirection(GetDashDirection(playerController.Forward, playerController.Left));
 
                 playerRigidbody.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
 

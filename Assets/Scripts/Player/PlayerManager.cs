@@ -12,23 +12,23 @@ namespace Player
         public PlayerMovement PlayerMovement;
         public PlayerLook PlayerLook;
         public PlayerDash PlayerDash;
-        
+
         public Rigidbody Rigidbody;
 
         private void OnValidate()
         {
             if (PlayerController == null)
                 PlayerController = GetComponent<PlayerController>();
-            
+
             if (PlayerMovement == null)
                 PlayerMovement = GetComponent<PlayerMovement>();
 
             if (PlayerLook == null)
                 PlayerLook = GetComponent<PlayerLook>();
-            
+
             if (PlayerDash == null)
                 PlayerDash = GetComponent<PlayerDash>();
-            
+
             if (Rigidbody == null)
                 Rigidbody = GetComponent<Rigidbody>();
         }
@@ -37,7 +37,8 @@ namespace Player
         {
             PlayerController.TickInput();
             PlayerMovement.HandleMovement();
-            PlayerDash.HandleDash();
+            if (PlayerDash.enabled)
+                PlayerDash.HandleDash();
         }
 
         private void LateUpdate()

@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066883315774838883}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -202,9 +202,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 3
+  m_CollisionDetection: 1
 --- !u!114 &1039244382439670619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +279,9 @@ MonoBehaviour:
   playerManager: {fileID: 1039244382439670619}
   mainCamera: {fileID: 0}
   fpsCamera: {fileID: 0}
+  dashFov: 120
+  sprintFov: 90
+  dashFovDuration: 0.5
 --- !u!114 &7930355276138330969
 MonoBehaviour:
   m_ObjectHideFlags: 0

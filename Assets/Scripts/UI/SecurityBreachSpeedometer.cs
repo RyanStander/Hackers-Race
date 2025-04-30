@@ -38,9 +38,10 @@ namespace UI
         private void FixedUpdate()
         {
             //get current speed with y axis ignored
-            float currentSpeed = Mathf.Sqrt(
+            /*float currentSpeed = Mathf.Sqrt(
                 Mathf.Pow(playerManager.Rigidbody.velocity.x, 2) +
-                Mathf.Pow(playerManager.Rigidbody.velocity.z, 2));
+                Mathf.Pow(playerManager.Rigidbody.velocity.z, 2));*/
+            float currentSpeed = playerManager.Rigidbody.velocity.magnitude;
             speedometerSlider.value = currentSpeed;
             speedText.text = $"{currentSpeed:F2} u/s";
 

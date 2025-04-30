@@ -64,6 +64,9 @@ namespace Player
 
             if (WishJump)
             {
+                Vector3 velocityPreJump = playerRigidbody.velocity;
+                velocityPreJump.y = 0;
+                playerRigidbody.velocity = velocityPreJump;
                 playerRigidbody.AddForce(Vector3.up * (JumpHeight * jumpHeightMultiplier), ForceMode.Impulse);
                 WishJump = false;
             }
