@@ -49,7 +49,12 @@ namespace Player
             if(cooldownActive)
                 HandleCooldown();
             
-            if (!playerController.DashInput || dashCount <= 0 ||wishingToDash)
+            if (!playerController.DashInput)
+                return;
+            
+            playerController.DashInput = false;
+            
+            if (dashCount <= 0 ||wishingToDash)
                 return;
 
             dashCount--;

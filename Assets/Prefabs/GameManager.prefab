@@ -50,6 +50,8 @@ MonoBehaviour:
   timeTracker: {fileID: 0}
   leaderboard: {fileID: 0}
   inputProvider: {fileID: 0}
+  outOfBoundsY: -50
+  restartOnDeath: 1
 --- !u!1001 &1805230070120245807
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -32,12 +32,6 @@ namespace Player
             HandleMovementInput();
         }
 
-        //Reset the input bools so that they do not queue up for animations
-        internal void ResetInputs()
-        {
-            DashInput = false;
-        }
-
         private void CheckInputs()
         {
             //Movement

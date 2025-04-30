@@ -5,3 +5,5 @@ CRT Startup from Pixabay https://pixabay.com/sound-effects/?utm_source=link-attr
 CRT ambience from Pixabay https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=60428
 Icons from Vovan29 https://www.deviantart.com/vovan29/art/Windows-95-ALL-ICONS-805656804
 TV Shut Down Sound by drippcfrom from https://pixabay.com/sound-effects/analog-tv-channel-power-cut-230330/
+Elevenlabs voice James Carter from https://elevenlabs.io
+Mouse Icons by NickKnacks from https://assetstore.unity.com/packages/2d/gui/icons/controller-overlays-button-kits-3-styles-x8-controllers-keyboard-72273

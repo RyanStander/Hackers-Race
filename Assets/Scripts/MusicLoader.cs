@@ -9,6 +9,7 @@ using UnityEngine.Networking;
 public class MusicLoader : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private float volume = 0.1f;
     private readonly string[] supportedExtensions = { ".mp3", ".wav", ".ogg" };
 
     private void OnValidate()
@@ -58,7 +59,7 @@ public class MusicLoader : MonoBehaviour
             }
 
             audioSource.loop = true;
-            audioSource.volume = 0.2f;
+            audioSource.volume = volume;
             AudioClip clip = DownloadHandlerAudioClip.GetContent(unityWebRequest);
             audioSource.clip = clip;
             audioSource.Play();

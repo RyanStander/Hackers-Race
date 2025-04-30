@@ -33,17 +33,12 @@ namespace Player
                 Rigidbody = GetComponent<Rigidbody>();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             PlayerController.TickInput();
             PlayerMovement.HandleMovement();
             if (PlayerDash.enabled)
                 PlayerDash.HandleDash();
-        }
-
-        private void LateUpdate()
-        {
-            PlayerController.ResetInputs();
         }
     }
 }

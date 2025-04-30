@@ -15,10 +15,7 @@ namespace Environment
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
-            {
-                gameManager.RestartLevel();
-            }
+            gameManager.Respawn();
         }
     }
 }

@@ -14,7 +14,6 @@ namespace Leaderboard
         [SerializeField] private TMP_InputField playerNameInput;
         [SerializeField] private GameObject submitButton;
         [SerializeField] private TextMeshProUGUI currentScoreText;
-        [SerializeField] private int levelNum;
 
         private List<PlayerInfo> collectedScores = new();
 
@@ -38,7 +37,7 @@ namespace Leaderboard
         {
             collectedScores.Clear();
             
-            string loadedScores = PlayerPrefs.GetString("LeaderBoards" + levelNum, "");
+            string loadedScores = PlayerPrefs.GetString("LeaderBoards" + SceneManager.GetActiveScene().name, "");
         
             string[] splitScores = loadedScores.Split(',');
 
@@ -106,14 +105,14 @@ namespace Leaderboard
                 stats += collectedScores[i].PlayerScore + ",";
             }
 
-            PlayerPrefs.SetString("LeaderBoards" + levelNum, stats);
+            PlayerPrefs.SetString("LeaderBoards" + SceneManager.GetActiveScene().name, stats);
 
             UpdateLeaderBoardVisual();
         }
 
         public void ClearPrefs()
         {
-            PlayerPrefs.DeleteKey("LeaderBoards" + levelNum);
+            PlayerPrefs.DeleteKey("LeaderBoards" + SceneManager.GetActiveScene().name);
         
             collectedScores.Clear();
         
