@@ -90,7 +90,7 @@ namespace Player
 
             Movement();
 
-            CheckForMovingPlatform();
+            //CheckForMovingPlatform();
         }
 
         private void Movement()
@@ -128,24 +128,22 @@ namespace Player
             }
         }
 
-        private void CheckForMovingPlatform()
+        private void OnCollisionStay(Collision collision)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, groundCheckDistance, groundMask) &&
-                hit.transform.CompareTag("MovingPlatform") && hit.transform.GetComponent<MovingObject>())
+            if (collision.gameObject.CompareTag("MovingPlatform"))
             {
-                transform.SetParent(hit.transform, true);
-                Debug.Log("Parenting");
-            }
-            else
-            {
-                if (transform.parent != null)
-                {
-                    transform.SetParent(null, true);
-                }
+                transform.SetParent(collision.transform);
             }
         }
         
+        private void OnCollisionExit(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("MovingPlatform"))
+            {
+                transform.SetParent(null);
+            }
+        }
+
         public float GetSecurityBreachSpeed() => securityBreachSpeed;
     }
 }

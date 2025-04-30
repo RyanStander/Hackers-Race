@@ -34,13 +34,13 @@ namespace Environment
 
         private void BecomeVulnerable()
         {
-            blockadeCollider.isTrigger = true;
+            blockadeCollider.enabled = false;
             meshRenderer.material = vulnerableMaterial;
         }
 
         private void BecomeImpenetrable()
         {
-            blockadeCollider.isTrigger = false;
+            blockadeCollider.enabled = true;
             meshRenderer.material = normalMaterial;
         }
     }
