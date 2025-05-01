@@ -351,6 +351,7 @@ MonoBehaviour:
   PlayerLook: {fileID: 5410123298762543536}
   PlayerDash: {fileID: 7930355276138330969}
   Rigidbody: {fileID: 1501248918444777407}
+  AudioSource: {fileID: 3306903058149754738}
 --- !u!114 &4774148798067014169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +394,7 @@ MonoBehaviour:
   JumpQueue: 0
   WishJump: 0
   IsGrounded: 0
+  jumpSound: {fileID: 8300000, guid: 2ad28fe23131f9343b09402a59b93ede, type: 3}
 --- !u!114 &5410123298762543536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +430,7 @@ MonoBehaviour:
   dashSpeed: 15
   dashCooldown: 3
   dashCount: 0
+  dashSound: {fileID: 8300000, guid: 4c7912244a37046488a97e4f8a147ee1, type: 3}
 --- !u!136 &4023404885302216182
 CapsuleCollider:
   m_ObjectHideFlags: 0

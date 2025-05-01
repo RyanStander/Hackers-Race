@@ -17,6 +17,8 @@ namespace Player
         private PlayerController playerController;
         private Rigidbody playerRigidbody;
         private bool wishingToDash;
+        
+        [SerializeField] private AudioClip dashSound;
 
         private void OnValidate()
         {
@@ -39,6 +41,7 @@ namespace Player
                     Camera.main.transform.TransformDirection(GetDashDirection(playerController.Forward, playerController.Left));
 
                 playerRigidbody.AddForce(dashDirection * dashSpeed, ForceMode.Impulse);
+                playerManager.AudioSource.PlayOneShot(dashSound);
 
                 wishingToDash = false;
             }

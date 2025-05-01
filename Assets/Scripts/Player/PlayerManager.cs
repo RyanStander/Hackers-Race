@@ -14,6 +14,7 @@ namespace Player
         public PlayerDash PlayerDash;
 
         public Rigidbody Rigidbody;
+        public AudioSource AudioSource;
 
         private void OnValidate()
         {
@@ -31,6 +32,9 @@ namespace Player
 
             if (Rigidbody == null)
                 Rigidbody = GetComponent<Rigidbody>();
+            
+            if (AudioSource == null)
+                AudioSource = GetComponentInChildren<AudioSource>();
         }
 
         private void FixedUpdate()
