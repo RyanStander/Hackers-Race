@@ -93,7 +93,7 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _BlockDensity: 6.19
+    - _BlockDensity: 85.2
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -108,18 +108,18 @@ Material:
     - _Glossiness: 0.477
     - _GlossyReflections: 0
     - _IsScreenSpace: 0
-    - _LineDensity: 36.8
+    - _LineDensity: 74
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 0
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Size: 5
+    - _Size: 7.95
     - _Smoothness: 0.477
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 2
+    - _Speed: 5
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
