@@ -4,37 +4,26 @@ namespace Environment
 {
     public class MagneticZone : MonoBehaviour
     {
-        [SerializeField] private enum MagneticDirection { Left, Right }
-        [SerializeField] private MagneticDirection direction = MagneticDirection.Left;
-
-        [Tooltip("How strong the magnetic force is.")]
-        [SerializeField] private float forceStrength = 10f;
-
-        [Tooltip("Apply force every frame the player is inside the zone.")]
-        [SerializeField] private bool continuousForce = true;
+        [SerializeField] private float pullForce = 10f;
+        [SerializeField] private LayerMask playerLayer;
 
         private void OnTriggerStay(Collider other)
         {
-            if (!continuousForce) return;
+            if ((playerLayer.value & (1 << other.gameObject.layer)) == 0) return;
 
             Rigidbody rb = other.attachedRigidbody;
-            if (rb != null && other.CompareTag("Player"))
-            {
-                Vector3 force = (direction == MagneticDirection.Left ? Vector3.left : Vector3.right) * forceStrength;
-                rb.AddForce(force, ForceMode.Acceleration);
-            }
+            if (rb == null) return;
+            
+            // Calculate the direction to the center of the magnetic zone
+            Vector3 direction = (transform.position - other.transform.position).normalized;
+            // Apply a force towards the center of the magnetic zone
+            rb.AddForce(direction * pullForce, ForceMode.Acceleration);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void Reset()
         {
-            if (continuousForce) return;
-
-            Rigidbody rb = other.attachedRigidbody;
-            if (rb != null && other.CompareTag("Player"))
-            {
-                Vector3 force = (direction == MagneticDirection.Left ? Vector3.left : Vector3.right) * forceStrength;
-                rb.AddForce(force, ForceMode.Impulse);
-            }
+            BoxCollider box = GetComponent<BoxCollider>();
+            box.isTrigger = true;
         }
     }
 }

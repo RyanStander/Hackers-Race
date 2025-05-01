@@ -698,7 +698,7 @@ MonoBehaviour:
   m_fontSizeMax: 36
   m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2235,7 +2235,7 @@ MonoBehaviour:
   m_fontSizeMax: 36
   m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3361,7 +3361,7 @@ MonoBehaviour:
   m_fontSizeMax: 36
   m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3571,7 +3571,7 @@ MonoBehaviour:
   m_fontSizeMax: 36
   m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5005,7 +5005,7 @@ MonoBehaviour:
   m_fontSizeMax: 36
   m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5789,7 +5789,7 @@ MonoBehaviour:
   radarUI: {fileID: 793939063690374721}
   blipPrefab: {fileID: 3300410027342002089, guid: 72bd0001ce4c07f43849669dac56899d,
     type: 3}
-  detectionRadius: 20
+  detectionRadius: 100
   sentryMask:
     serializedVersion: 2
     m_Bits: 128
@@ -6492,7 +6492,7 @@ MonoBehaviour:
   m_fontSizeMax: 36
   m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -6627,7 +6627,7 @@ MonoBehaviour:
   m_fontSizeMax: 36
   m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -8462,7 +8462,7 @@ MonoBehaviour:
   m_fontSizeMax: 36
   m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -8951,7 +8951,7 @@ MonoBehaviour:
   m_fontSizeMax: 36
   m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

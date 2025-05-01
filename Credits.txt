@@ -9,3 +9,4 @@ Elevenlabs voice James Carter from https://elevenlabs.io
 Mouse Icons by NickKnacks from https://assetstore.unity.com/packages/2d/gui/icons/controller-overlays-button-kits-3-styles-x8-controllers-keyboard-72273
 Icon pack by Hugo4IT from https://hugo4it.itch.io/nice-pack
 Music by Chris from https://chrislsound.itch.io/cyberpunk-stealth
+URP Dissolve by NOTT from https://assetstore.unity.com/packages/vfx/shaders/urp-dissolve-2020-191256
